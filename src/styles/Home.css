@@ -1,8 +1,8 @@
-/* Full screen hero section */
+
 .home {
   position: relative;
   height: 100vh;
-  background-image: url("../assets/restaurant.png"); /* your image */
+  background-image: url("../assets/restaurant.png"); 
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -11,7 +11,7 @@
   align-items: center;
 }
 
-/* Dark overlay */
+
 .overlay {
   position: absolute;
   top: 0;
@@ -21,7 +21,7 @@
   background: rgba(0, 0, 0, 0.55);
 }
 
-/* Centered content */
+
 .home-content {
   position: relative;
   z-index: 2;
@@ -31,20 +31,20 @@
   padding: 30px;
 }
 
-/* Title */
+
 .home-content h1 {
   font-size: 48px;
   margin-bottom: 15px;
   font-weight: bold;
 }
 
-/* Subtitle */
+
 .home-content p {
   font-size: 20px;
   margin-bottom: 25px;
 }
 
-/* Button */
+
 .home-btn {
   background-color: #e63946;
   color: white;

@@ -1,0 +1,18 @@
+.about-container {
+  width: 80%;
+  margin: 40px auto;
+  text-align: center;
+}
+
+.about-container h1 {
+  font-size: 36px;
+  color: #e63946;
+  margin-bottom: 20px;
+}
+
+.about-text {
+  font-size: 18px;
+  color: #333;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
