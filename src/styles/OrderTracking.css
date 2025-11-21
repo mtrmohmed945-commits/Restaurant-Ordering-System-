@@ -1,0 +1,180 @@
+.tracking-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+h1 {
+  color: orange;
+  margin-bottom: 20px;
+}
+
+.orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.order-card {
+  padding: 15px 20px;
+  border: 2px solid orange;
+  border-radius: 10px;
+  text-align: left;
+  background-color: #fffaf0;
+  transition: transform 0.2s;
+}
+
+.order-card:hover {
+  transform: scale(1.02);
+}
+
+.order-card h2 {
+  margin: 0 0 10px 0;
+  color: #ff6600;
+}
+
+.status {
+  font-weight: bold;
+}
+
+.status.preparing {
+  color: #ff9900;
+}
+
+.status.on-the-way {
+  color: #ff6600;
+}
+
+.status.delivered {
+  color: #00b300;
+}
+
+.order-card button {
+  margin-top: 10px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  background-color: orange;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.order-card button:hover {
+  background-color: #ff9933;
+}
+
+.no-orders {
+  color: gray;
+  font-style: italic;
+}
+.tracking-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+h1 {
+  color: orange;
+  margin-bottom: 20px;
+}
+
+/* Add order form */
+.add-order-form {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.add-order-form input {
+  padding: 8px 12px;
+  border: 2px solid orange;
+  border-radius: 6px;
+  width: 60%;
+  font-size: 16px;
+}
+
+.add-order-form button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  background-color: orange;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.add-order-form button:hover {
+  background-color: #ff9933;
+}
+
+.orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.order-card {
+  padding: 15px 20px;
+  border: 2px solid orange;
+  border-radius: 10px;
+  text-align: left;
+  background-color: #fffaf0;
+  transition: transform 0.2s;
+}
+
+.order-card:hover {
+  transform: scale(1.02);
+}
+
+.order-card h2 {
+  margin: 0 0 10px 0;
+  color: #ff6600;
+}
+
+.status {
+  font-weight: bold;
+}
+
+.status.preparing {
+  color: #ff9900;
+}
+
+.status.on-the-way {
+  color: #ff6600;
+}
+
+.status.delivered {
+  color: #00b300;
+}
+
+.order-card button {
+  margin-top: 10px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  background-color: orange;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.order-card button:hover {
+  background-color: #ff9933;
+}
+
+.no-orders {
+  color: gray;
+  font-style: italic;
+}
