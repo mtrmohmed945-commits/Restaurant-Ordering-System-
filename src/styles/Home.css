@@ -59,9 +59,9 @@
   background-color: #ffe066;
   color: black;
 }
-/* Mobile devices */
+
 @media (max-width: 768px) {
-  /* Example: reduce padding and font sizes on mobile */
+
   .container {
     padding: 10px;
   }
@@ -76,8 +76,8 @@
 }
 @media (max-width: 768px) {
   .hero-section {
-    background-position: top;    /* or center depending on image */
-    height: 300px;               /* reduce height */
+    background-position: top;    
+    height: 300px;               
   }
 
   .hero-content {

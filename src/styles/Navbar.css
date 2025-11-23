@@ -50,9 +50,9 @@
   font-size: 22px;
   font-weight: bold;
 }
-/* Mobile devices */
+
 @media (max-width: 768px) {
-  /* Example: reduce padding and font sizes on mobile */
+
   .container {
     padding: 10px;
   }

@@ -66,18 +66,18 @@
 }
 
 .footer-social a {
-  font-size: 34px;      /* Bigger icons */
+  font-size: 34px;      
   color: white;
   transition: 0.25s ease-in-out;
 }
 
 .footer-social a:hover {
   color: #ffe6e6;
-  transform: scale(1.25);  /* More attractive hover animation */
+  transform: scale(1.25);  
 }
-/* Mobile devices */
+
 @media (max-width: 768px) {
-  /* Example: reduce padding and font sizes on mobile */
+  
   .container {
     padding: 10px;
   }
