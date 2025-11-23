@@ -1,4 +1,4 @@
-# 🍔 FastBite – Restaurant Ordering System  
+# 🍔 FoodExpress – Restaurant Ordering System  
 A modern and responsive web-based restaurant ordering system built using **React**.  
 The system allows users to browse the restaurant menu, add items to a cart, review their order, and track their order status.
 
