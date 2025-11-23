@@ -1,5 +1,6 @@
-import { useState } from "react";
 import "../styles/Menu.css";
+import { useContext } from "react";
+import { GlobalContext } from "../context/GlobalContext";
 
 import burger from "../assets/burger.jpg";
 import fries from "../assets/fries.jpg";
@@ -8,25 +9,24 @@ import pizza from "../assets/pizza.jpg";
 import cola from "../assets/cola.jpg";
 
 export default function Menu() {
-  const [cart, setCart] = useState([]);
+  const { cart, setCart } = useContext(GlobalContext);
 
   const menuItems = [
     { id: 1, name: "Classic Burger", price: 8.99, desc: "Juicy beef patty with lettuce, tomato, and cheese.", img: burger },
     { id: 2, name: "Crispy Fries", price: 3.49, desc: "Golden, crunchy, and perfectly salted.", img: fries },
     { id: 3, name: "Chicken Nuggets", price: 5.99, desc: "6-piece crispy chicken nuggets with sauce.", img: nuggets },
-    { id: 4, name: "Cheese Pizza Slice", price: 4.5, desc: "Hot cheesy goodness with soft crust.", img: pizza },
+    { id: 4, name: "Cheese Pizza Slice", price: 4.50, desc: "Hot cheesy goodness with soft crust.", img: pizza },
     { id: 5, name: "Cola Drink", price: 1.99, desc: "Refreshing cold soda.", img: cola }
   ];
 
   const addToCart = (item) => {
-    setCart([...cart, item]);
-  };
+  setCart([...cart, { ...item, quantity: 1 }]);
+};
 
   return (
     <div className="menu-container">
       <h1>Our Menu</h1>
 
-      
       <div className="menu-grid">
         {menuItems.map((item) => (
           <div className="menu-card" key={item.id}>
@@ -43,7 +43,6 @@ export default function Menu() {
         ))}
       </div>
 
-      {/* MINI CART */}
       {cart.length > 0 && (
         <div className="cart-box">
           <h2>Your Cart ({cart.length})</h2>
