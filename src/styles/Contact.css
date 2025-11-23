@@ -34,3 +34,18 @@
 .contact-form button:hover {
   background-color: #e03d00;
 }
+/* Mobile devices */
+@media (max-width: 768px) {
+  /* Example: reduce padding and font sizes on mobile */
+  .container {
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+}

@@ -59,3 +59,37 @@
   background-color: #ffe066;
   color: black;
 }
+/* Mobile devices */
+@media (max-width: 768px) {
+  /* Example: reduce padding and font sizes on mobile */
+  .container {
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+}
+@media (max-width: 768px) {
+  .hero-section {
+    background-position: top;    /* or center depending on image */
+    height: 300px;               /* reduce height */
+  }
+
+  .hero-content {
+    padding: 20px;
+    text-align: center;
+  }
+
+  .hero-content h1 {
+    font-size: 24px;
+  }
+
+  .hero-content p {
+    font-size: 14px;
+  }
+}

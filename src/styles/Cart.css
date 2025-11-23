@@ -111,3 +111,38 @@
 .checkout-btn:hover {
   background: #d62828;
 }
+/* Mobile devices */
+@media (max-width: 768px) {
+  /* Example: reduce padding and font sizes on mobile */
+  .container {
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+}
+@media (max-width: 768px) {
+  .cart-item {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .cart-img {
+    width: 70%;
+    margin-bottom: 15px;
+  }
+
+  .cart-buttons {
+    justify-content: center;
+  }
+
+  .cart-total {
+    text-align: center;
+  }
+}
