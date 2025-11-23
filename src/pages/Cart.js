@@ -1,29 +1,15 @@
-import { useState } from "react";
 import "../styles/Cart.css";
+import { useContext } from "react";
+import { GlobalContext } from "../context/GlobalContext";
+import { useNavigate } from "react-router-dom";
 
 export default function Cart() {
-  const [cart, setCart] = useState([
-    {
-      id: 1,
-      name: "Classic Burger",
-      desc: "Juicy beef patty with lettuce, tomato, and cheese.",
-      price: 8.99,
-      img: "/assets/burger.jpg",
-      quantity: 1
-    },
-    {
-      id: 2,
-      name: "Crispy Fries",
-      desc: "Golden, crunchy, and perfectly salted.",
-      price: 3.49,
-      img: "/assets/fries.jpg",
-      quantity: 2
-    }
-  ]);
+  const { cart, setCart, orders, setOrders } = useContext(GlobalContext);
+  const navigate = useNavigate();
 
   const increaseQty = (id) => {
     setCart(
-      cart.map((item) =>
+      cart.map(item =>
         item.id === id ? { ...item, quantity: item.quantity + 1 } : item
       )
     );
@@ -32,22 +18,35 @@ export default function Cart() {
   const decreaseQty = (id) => {
     setCart(
       cart
-        .map((item) =>
+        .map(item =>
           item.id === id && item.quantity > 1
             ? { ...item, quantity: item.quantity - 1 }
             : item
         )
-        .filter((item) => item.quantity > 0)
     );
   };
 
   const removeItem = (id) => {
-    setCart(cart.filter((item) => item.id !== id));
+    setCart(cart.filter(item => item.id !== id));
   };
 
   const total = cart
     .reduce((sum, item) => sum + item.price * item.quantity, 0)
     .toFixed(2);
+
+  const checkout = () => {
+    if (cart.length === 0) return;
+
+    const newOrders = cart.map(item => ({
+      id: Date.now() + Math.random(),
+      name: item.name,
+      status: "Preparing"
+    }));
+
+    setOrders([...orders, ...newOrders]);
+    setCart([]); // empty cart
+    navigate("/order-tracking");
+  };
 
   return (
     <div className="cart-container">
@@ -58,7 +57,7 @@ export default function Cart() {
       ) : (
         <>
           <div className="cart-items">
-            {cart.map((item) => (
+            {cart.map(item => (
               <div className="cart-card" key={item.id}>
                 <img src={item.img} alt={item.name} className="cart-img" />
 
@@ -74,10 +73,7 @@ export default function Cart() {
                   </div>
                 </div>
 
-                <button
-                  className="remove-btn"
-                  onClick={() => removeItem(item.id)}
-                >
+                <button className="remove-btn" onClick={() => removeItem(item.id)}>
                   Remove
                 </button>
               </div>
@@ -86,7 +82,9 @@ export default function Cart() {
 
           <div className="cart-total">
             <h2>Total: ${total}</h2>
-            <button className="checkout-btn">Checkout</button>
+            <button className="checkout-btn" onClick={checkout}>
+              Checkout
+            </button>
           </div>
         </>
       )}

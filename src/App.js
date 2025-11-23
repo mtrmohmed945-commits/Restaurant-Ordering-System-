@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
+import { GlobalProvider } from "./context/GlobalContext";
 import Home from "./pages/Home";
 import Menu from "./pages/Menu";
 import Cart from "./pages/Cart";
@@ -10,6 +10,7 @@ import Navbar from "./components/Navbar";
 
 function App() {
   return (
+     <GlobalProvider>
     <Router>
       <Navbar />
       <Routes>
@@ -21,6 +22,7 @@ function App() {
         <Route path="/about" element={<About />} />
       </Routes>
     </Router>
+    </GlobalProvider>
   );
 }
 
