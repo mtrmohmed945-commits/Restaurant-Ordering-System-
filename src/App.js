@@ -10,6 +10,8 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Login from "./pages/login";
 import Signup from "./pages/signup";
+import ProtectedRoute from "./components/ProtectedRoute";
+
 
 
 function App() {
@@ -17,17 +19,47 @@ function App() {
      <GlobalProvider>
     <Router>
       <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/menu" element={<Menu />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/orders" element={<OrderTracking />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+     <Routes>
+  <Route path="/login" element={<Login />} />
+  <Route path="/signup" element={<Signup />} />
 
-      </Routes>
+  <Route path="/" element={
+    <ProtectedRoute>
+      <Home />
+    </ProtectedRoute>
+  } />
+
+  <Route path="/menu" element={
+    <ProtectedRoute>
+      <Menu />
+    </ProtectedRoute>
+  } />
+
+  <Route path="/cart" element={
+    <ProtectedRoute>
+      <Cart />
+    </ProtectedRoute>
+  } />
+
+  <Route path="/orders" element={
+    <ProtectedRoute>
+      <OrderTracking />
+    </ProtectedRoute>
+  } />
+
+  <Route path="/contact" element={
+    <ProtectedRoute>
+      <Contact />
+    </ProtectedRoute>
+  } />
+
+  <Route path="/about" element={
+    <ProtectedRoute>
+      <About />
+    </ProtectedRoute>
+  } />
+</Routes>
+
       <Footer></Footer>
     </Router>
 
