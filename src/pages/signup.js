@@ -9,13 +9,40 @@ export default function Signup() {
   });
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
   };
 
-  const handleSubmit = (e) => {
+  // 👇 FETCH GOES HERE
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
-    alert("Signup submitted (backend next)");
+
+    try {
+      const res = await fetch("http://localhost:5000/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        alert(data.message || "Signup failed");
+        return;
+      }
+
+      alert("Signup successful ✅");
+
+      setFormData({ name: "", email: "", password: "" });
+
+    } catch (error) {
+      console.error("Signup error:", error);
+      alert("Server error");
+    }
   };
 
   return (
@@ -24,6 +51,7 @@ export default function Signup() {
 
       <form className="auth-form" onSubmit={handleSubmit}>
         <input
+          type="text"
           name="name"
           placeholder="Full Name"
           value={formData.name}
@@ -32,8 +60,8 @@ export default function Signup() {
         />
 
         <input
-          name="email"
           type="email"
+          name="email"
           placeholder="Email"
           value={formData.email}
           onChange={handleChange}
@@ -41,8 +69,8 @@ export default function Signup() {
         />
 
         <input
-          name="password"
           type="password"
+          name="password"
           placeholder="Password"
           value={formData.password}
           onChange={handleChange}
