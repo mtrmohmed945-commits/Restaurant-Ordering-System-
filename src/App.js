@@ -11,60 +11,74 @@ import Footer from "./components/Footer";
 import Login from "./pages/login";
 import Signup from "./pages/signup";
 import ProtectedRoute from "./components/ProtectedRoute";
+import { AuthProvider } from "./context/AuthContext";
+import AdminRoute from "./components/AdminRoute";
+import AdminDashboard from "./pages/AdminDashboard";
+
+
 
 
 
 function App() {
   return (
-     <GlobalProvider>
-    <Router>
-      <Navbar />
-     <Routes>
-  <Route path="/login" element={<Login />} />
-  <Route path="/signup" element={<Signup />} />
+    <AuthProvider>
+      <GlobalProvider>
+        <Router>
+          <Navbar />
 
-  <Route path="/" element={
-    <ProtectedRoute>
-      <Home />
-    </ProtectedRoute>
-  } />
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
 
-  <Route path="/menu" element={
-    <ProtectedRoute>
-      <Menu />
-    </ProtectedRoute>
-  } />
+            <Route path="/" element={
+              <ProtectedRoute>
+                <Home />
+              </ProtectedRoute>
+            } />
 
-  <Route path="/cart" element={
-    <ProtectedRoute>
-      <Cart />
-    </ProtectedRoute>
-  } />
+            <Route path="/menu" element={
+              <ProtectedRoute>
+                <Menu />
+              </ProtectedRoute>
+            } />
 
-  <Route path="/orders" element={
-    <ProtectedRoute>
-      <OrderTracking />
-    </ProtectedRoute>
-  } />
+            <Route path="/cart" element={
+              <ProtectedRoute>
+                <Cart />
+              </ProtectedRoute>
+            } />
 
-  <Route path="/contact" element={
-    <ProtectedRoute>
-      <Contact />
-    </ProtectedRoute>
-  } />
+            <Route path="/orders" element={
+              <ProtectedRoute>
+                <OrderTracking />
+              </ProtectedRoute>
+            } />
 
-  <Route path="/about" element={
-    <ProtectedRoute>
-      <About />
-    </ProtectedRoute>
-  } />
-</Routes>
+            <Route path="/contact" element={
+              <ProtectedRoute>
+                <Contact />
+              </ProtectedRoute>
+            } />
 
-      <Footer></Footer>
-    </Router>
+            <Route path="/about" element={
+              <ProtectedRoute>
+                <About />
+              </ProtectedRoute>
+            } />
+            <Route path="/admin" element={
+  <AdminRoute>
+    <AdminDashboard />
+  </AdminRoute>
+} />
 
-    </GlobalProvider>
+          </Routes>
+
+          <Footer />
+        </Router>
+      </GlobalProvider>
+    </AuthProvider>
   );
 }
+
 
 export default App;
