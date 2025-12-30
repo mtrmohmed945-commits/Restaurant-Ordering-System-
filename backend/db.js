@@ -1,4 +1,4 @@
-import mysql from "mysql2";
+import mysql from "mysql2/promise"; // promise version
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -13,13 +13,16 @@ const pool = mysql.createPool({
   queueLimit: 0
 });
 
-pool.getConnection((err, connection) => {
-  if (err) {
+// Optional test connection
+(async () => {
+  try {
+    const [rows] = await pool.query('SELECT 1'); // simple test
+    console.log("✅ MySQL connected (promise pool)");
+  } catch (err) {
     console.error("❌ MySQL pool error:", err.message);
-  } else {
-    console.log("✅ MySQL connected (pool)");
-    connection.release();
   }
-});
+})();
 
 export default pool;
+
+

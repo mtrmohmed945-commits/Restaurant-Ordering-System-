@@ -1,7 +1,7 @@
 import express from "express";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import pool from "../db.js";
+import db from "../db.js"; // use promise-based pool
 
 const router = express.Router();
 
@@ -19,33 +19,27 @@ router.post("/register", async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const sql = "INSERT INTO users (name, email, password) VALUES (?, ?, ?)";
-    pool.query(sql, [name, email, hashedPassword], (err) => {
-      if (err) {
-        return res.status(500).json({ message: err.message });
-      }
+    const [result] = await db.query(sql, [name, email, hashedPassword]); // ✅ use await
 
-      res.status(201).json({ message: "User registered successfully" });
-    });
+    res.status(201).json({ message: "User registered successfully", id: result.insertId });
   } catch (error) {
-    res.status(500).json({ message: "Server error" });
+    res.status(500).json({ message: error.message });
   }
 });
 
 // =====================
 // LOGIN
 // =====================
-router.post("/login", (req, res) => {
+router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
     return res.status(400).json({ message: "All fields required" });
   }
 
-  const sql = "SELECT * FROM users WHERE email = ?";
-  pool.query(sql, [email], async (err, results) => {
-    if (err) {
-      return res.status(500).json({ message: "Server error" });
-    }
+  try {
+    const sql = "SELECT * FROM users WHERE email = ?";
+    const [results] = await db.query(sql, [email]); // ✅ use await
 
     if (results.length === 0) {
       return res.status(401).json({ message: "Invalid email or password" });
@@ -63,16 +57,6 @@ router.post("/login", (req, res) => {
       process.env.JWT_SECRET,
       { expiresIn: "1h" }
     );
-    res.json({
-    token,
-    user: {
-    id: user._id,
-    name: user.name,
-    email: user.email,
-    role: user.role
-    }
-    });
-
 
     res.json({
       message: "Login successful",
@@ -80,10 +64,13 @@ router.post("/login", (req, res) => {
       user: {
         id: user.id,
         name: user.name,
+        email: user.email,
         role: user.role
       }
     });
-  });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 });
 
 export default router;
