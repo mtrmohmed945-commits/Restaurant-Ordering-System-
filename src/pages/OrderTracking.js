@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "../styles/OrderTracking.css";
 
 export default function OrderTracking() {
   const [orders, setOrders] = useState([]);
@@ -14,21 +15,29 @@ export default function OrderTracking() {
   }, []);
 
   return (
-    <div style={{ padding: 30 }}>
+    <div className="order-container">
       <h1>Your Orders</h1>
 
-      {orders.length === 0 && <p>No orders yet</p>}
+      {orders.length === 0 && (
+        <p className="order-empty">No orders yet</p>
+      )}
 
       {orders.map(order => (
-        <div key={order.id} style={{ border: "1px solid #ccc", padding: 10, marginBottom: 10 }}>
+        <div key={order.id} className="order-card">
           <h3>Order #{order.id}</h3>
 
-          <p><b>Name:</b> {order.customer}</p>
-          <p><b>Status:</b> {order.status}</p>
-          <p><b>Total:</b> ${Number(order.total).toFixed(2)}</p>
+          <div className="order-info">
+            <p><b>Name:</b> {order.customer}</p>
+            <p>
+              <span className={`order-status status-${order.status}`}>
+                {order.status}
+              </span>
+            </p>
+            <p><b>Total:</b> ${Number(order.total).toFixed(2)}</p>
+          </div>
 
           <h4>Items</h4>
-          <ul>
+          <ul className="order-items">
             {order.items.map((item, i) => (
               <li key={i}>
                 {item.name} — Qty {item.quantity} — ${item.price}
