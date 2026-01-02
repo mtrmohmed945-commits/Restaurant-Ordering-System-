@@ -8,6 +8,8 @@ function Contact() {
     message: ""
   });
 
+  const [loading, setLoading] = useState(false);
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -15,12 +17,37 @@ function Contact() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
-    alert(`Message Sent!\n\nName: ${formData.name}\nEmail: ${formData.email}\nMessage: ${formData.message}`);
-    // Reset
-    setFormData({ name: "", email: "", message: "" });
+    try {
+      const res = await fetch("http://localhost:5000/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        alert(data.message || "Failed to send message");
+        return;
+      }
+
+      alert("Message sent successfully ✅");
+
+      // Reset form
+      setFormData({ name: "", email: "", message: "" });
+
+    } catch (error) {
+      console.error(error);
+      alert("Server error. Try again later.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -55,9 +82,12 @@ function Contact() {
           required
         ></textarea>
 
-        <button type="submit">Send</button>
+        <button type="submit" disabled={loading}>
+          {loading ? "Sending..." : "Send"}
+        </button>
       </form>
     </div>
   );
 }
-export default Contact
+
+export default Contact;
